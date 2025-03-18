@@ -44,7 +44,7 @@ The game that you program should:
 
 3. Be **non-trivial to play**, i.e. there should be an element of difficulty / challenge for players
 
-4. Have a **clear outcome**, e.g. a winner based on score / survival / etc
+4. Have a **clear outcome**, e.g. a winner based on score / survival / etc 
 
 5. Provide clear and simple **instructions** on how to play the game (either at the start, or as play progresses)
 

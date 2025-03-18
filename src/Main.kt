@@ -16,6 +16,16 @@
 
 
 fun main() {
-    println("Hello World!")
+//make game grid using const
+//randomly put an ammount of coins on the play grid using a const for the num of silver coins
+
+
+
+
+
+
+
+
+
 }
 
