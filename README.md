@@ -1,4 +1,4 @@
-# NCEA-Level-2-programming-Assesment
+# Old Gold Game
 
 
 by Riley Fielding
@@ -9,12 +9,9 @@ This is a programming project for **NCEA Level 2**, assessed against standard [9
 
 The project is written in the [Kotlin](https://kotlinlang.org) programming language and demonstrates a number of **advanced programming techniques**:
 - Modifying data stored in collections
-- Storing multi-dimensional data in collections
 - Creating functions that use parameters and/or return values
 - Using non-trivial string manipulation
 - Using additional non-core libraries
-
-** EDIT LIST ABOVE TO MATCH YOUR PROJECT**
 
 ---
 
@@ -28,7 +25,7 @@ The project is written in the [Kotlin](https://kotlinlang.org) programming langu
 
 ## Project Description
 
-**PLACE YOUR PROJECT DESCRIPTION HERE**
+Old Gold is a two-player game, played on a one-dimensional grid with coins, where the aim is to win by being the player who **removes the gold coin**. 
 
 
 
