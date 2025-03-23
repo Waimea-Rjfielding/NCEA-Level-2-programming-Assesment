@@ -1,3 +1,5 @@
+import kotlin.random.Random
+
 /**
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
@@ -13,19 +15,39 @@
  * =====================================================================
  */
 
-
-
+const val GAMESQUARES = 20
+const val MINCOINS = 5
+const val MAXCOINS = 15
+const val EMPTY = " "
+val COINAMMOUNT = Random.nextInt(from = MINCOINS, until = MAXCOINS)
 fun main() {
+    val gameBoard = mutableListOf<String>()
+    for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
 //make game grid using const
+    showGameBoard(gameBoard)
+
+
 //randomly put an ammount of coins on the play grid using a const for the num of silver coins
-
-
-
-
-
-
-
-
-
 }
+
+
+
+fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
+    println()
+    for (i in 0..<gameBoard.size - 1) {
+        print("+-------")
+
+    }
+    println('+')
+    for (i in gameBoard.indices - 1) {
+        print("| ${gameBoard[i]}".padEnd(length = 8))
+    }
+    println('|')
+    for (i in 0..<gameBoard.size - 1) {
+        print("+-------")
+    }
+    println('+')
+}
+
+
 
