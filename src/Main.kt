@@ -18,12 +18,13 @@ import kotlin.random.Random
 const val GAMESQUARES = 20
 const val MINCOINS = 5
 const val MAXCOINS = 15
-const val EMPTY = "BLNK"
+const val EMPTY = "    "
 val COINAMMOUNT = Random.nextInt(from = MINCOINS, until = MAXCOINS)
 const val GOLDCOIN = "GOLD"
 const val SILVERCOIN = "SILV"
 fun main() {
 //make game grid using const
+    println(COINAMMOUNT)
     val gameBoard = mutableListOf<String>()
     for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
 
@@ -36,11 +37,22 @@ fun main() {
 }
 fun placeCoinsInGrid(gameBoard: MutableList<String>) {
     repeat(COINAMMOUNT) {
-        var coinPlacement = Random.nextInt(from = 0, until = GAMESQUARES - 1)
-        gameBoard[coinPlacement] = SILVERCOIN.black().bgGrey()
+
+        var coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
+
+        while(true){
+            if (gameBoard[coinPlacement] == EMPTY){
+                break
+            }
+            coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
+        }
+
+        gameBoard[coinPlacement] = SILVERCOIN
+
+
 
     }
-    gameBoard[Random.nextInt(from = 0, until = GAMESQUARES - 1)] = GOLDCOIN.black().bgYellow()
+    gameBoard[coinPlacement] = GOLDCOIN
 }
 
 
@@ -63,7 +75,14 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
     }
     println('+')
     for (i in gameBoard.indices) {
-        print("| ${gameBoard[i]} ")
+        print("| ")
+        when(gameBoard[i]) {
+            SILVERCOIN -> print(gameBoard[i].black().bgGrey())
+            GOLDCOIN -> print(gameBoard[i].black().bgYellow())
+            EMPTY -> print(gameBoard[i].black())
+
+        }
+        print(" ")
     }
     println('|')
     for (i in 0..<gameBoard.size) {
