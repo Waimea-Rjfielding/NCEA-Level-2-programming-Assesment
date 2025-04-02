@@ -38,7 +38,7 @@ fun main() {
 fun placeCoinsInGrid(gameBoard: MutableList<String>) {
     repeat(COINAMMOUNT) {
 
-        var coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
+    var coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
 
         while(true){
             if (gameBoard[coinPlacement] == EMPTY){
@@ -52,7 +52,18 @@ fun placeCoinsInGrid(gameBoard: MutableList<String>) {
 
 
     }
+
+    var coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
+
+    while(true){
+        if (gameBoard[coinPlacement] == EMPTY){
+            break
+        }
+        coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
+    }
+
     gameBoard[coinPlacement] = GOLDCOIN
+
 }
 
 
