@@ -1,3 +1,5 @@
+@file:Suppress("DUPLICATE_LABEL_IN_WHEN")
+
 import kotlin.random.Random
 
 /**
@@ -22,6 +24,7 @@ const val EMPTY = "    "
 val COINAMMOUNT = Random.nextInt(from = MINCOINS, until = MAXCOINS)
 const val GOLDCOIN = "GOLD"
 const val SILVERCOIN = "SILV"
+
 fun main() {
 //make game grid using const
     println(COINAMMOUNT)
@@ -84,7 +87,7 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
         print("+------")
 
     }
-    println('+')
+    println("+")
     for (i in gameBoard.indices) {
         print("| ")
         when(gameBoard[i]) {
@@ -92,18 +95,24 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
             GOLDCOIN -> print(gameBoard[i].black().bgYellow())
             EMPTY -> print(gameBoard[i].black())
 
+
         }
         print(" ")
     }
-    println('|')
+    println("|")
     for (i in 0..<gameBoard.size) {
         print("+------")
     }
-    println('+')
+    println("+")
 }
 
 fun selectCoin(gameBoard: MutableList<String> = mutableListOf()) {
-
+    println()
+    print("Which box contains the coin you would like to move: ")
+    var selectedCoin = readln().toIntOrNull()
+    if (selectedCoin != null) {
+        if (gameBoard[selectedCoin] != EMPTY) {
+        return selectCoin(gameBoard)
+        }
+    }
 }
-
-
