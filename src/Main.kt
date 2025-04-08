@@ -1,5 +1,3 @@
-@file:Suppress("DUPLICATE_LABEL_IN_WHEN")
-
 import kotlin.random.Random
 
 /**
@@ -16,10 +14,9 @@ import kotlin.random.Random
  *
  * =====================================================================
  */
-
 const val GAMESQUARES = 20
 const val MINCOINS = 5
-const val MAXCOINS = 15
+const val MAXCOINS = 10
 const val EMPTY = "    "
 val COINAMMOUNT = Random.nextInt(from = MINCOINS, until = MAXCOINS)
 const val GOLDCOIN = "GOLD"
@@ -36,16 +33,16 @@ fun main() {
     placeCoinsInGrid(gameBoard)
     while (true){
     showGameBoard(gameBoard)
-    val selected = selectCoin(gameBoard)
-    val destination = whereMoveCoin(gameBoard)
-    if (destination >= selected){
-        moveCoin(gameBoard, destination, selected)
-
-    }
-    else{
-        println("Invalid move!")
-    }
-
+    val selected = selectCoin(gameBoard) -1
+    val destination = whereMoveCoin(gameBoard) -1
+    var legalMove = checkMove(gameBoard, destination, selected)
+        
+        if (destination >= selected) {
+            moveCoin(gameBoard, destination, selected)
+        }
+        else{
+            println("Invalid move!")
+        }
 }
 
 
@@ -156,6 +153,12 @@ fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
     }
 }
 
-fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int) {
+fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int): MutableList<String> {
+    gameBoard[destination!!] = gameBoard[selected]
+    gameBoard[selected] = (EMPTY)
+    return(gameBoard)
+}
 
+fun checkMove(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int): MutableList<String> {
+return (gameBoard)
 }
