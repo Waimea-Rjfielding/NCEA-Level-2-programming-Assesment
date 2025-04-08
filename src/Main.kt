@@ -26,16 +26,28 @@ const val GOLDCOIN = "GOLD"
 const val SILVERCOIN = "SILV"
 
 fun main() {
-//make game grid using const
+    //make game grid using const
     println(COINAMMOUNT)
     val gameBoard = mutableListOf<String>()
     for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
 
 
-//randomly put an ammount of coins on the play grid using a const for the num of silver coins
+    //randomly put an ammount of coins on the play grid using a const for the num of silver coins
     placeCoinsInGrid(gameBoard)
+    while (true){
     showGameBoard(gameBoard)
-    selectCoin(gameBoard)
+    val selected = selectCoin(gameBoard)
+    val destination = whereMoveCoin(gameBoard)
+    if (destination >= selected){
+        moveCoin(gameBoard, destination, selected)
+
+    }
+    else{
+        println("Invalid move!")
+    }
+
+}
+
 
 }
 fun placeCoinsInGrid(gameBoard: MutableList<String>) {
@@ -106,13 +118,44 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
     println("+")
 }
 
-fun selectCoin(gameBoard: MutableList<String> = mutableListOf()) {
+fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
     println()
     print("Which box contains the coin you would like to move: ")
     var selectedCoin = readln().toIntOrNull()
     if (selectedCoin != null) {
-        if (gameBoard[selectedCoin] != EMPTY) {
+        if (gameBoard[selectedCoin-1] != EMPTY) {
+            return (selectedCoin)
+        }
+        else
+            println("Box has no coin!")
+            return selectCoin(gameBoard)
+    }
+    else
+        println("Enter a number!")
         return selectCoin(gameBoard)
+}
+
+fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
+    println()
+    print("Enter where you would like to move coin: ")
+    var moveTo = readln().toIntOrNull()
+    if (moveTo != null) {
+        if (gameBoard[moveTo-1] == EMPTY) {
+            return (moveTo)
+        }
+        else {
+            println("Box is full!")
+            return whereMoveCoin(gameBoard)
+
         }
     }
+    else {
+        println("Enter a number!")
+        return whereMoveCoin(gameBoard)
+
+    }
+}
+
+fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int) {
+
 }
