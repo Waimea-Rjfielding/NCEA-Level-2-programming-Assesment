@@ -27,23 +27,40 @@ fun main() {
     println(COINAMMOUNT)
     val gameBoard = mutableListOf<String>()
     for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
+    print("Player 1 name:")
+    val playerOneName = readln()
+    print("Player 2 name:")
+    val playerTwoName = readln()
+    var turns = 1
 
 
     //randomly put an ammount of coins on the play grid using a const for the num of silver coins
     placeCoinsInGrid(gameBoard)
     while (true){
-    showGameBoard(gameBoard)
-    val selected = selectCoin(gameBoard) -1
-    val destination = whereMoveCoin(gameBoard) -1
-    var legalMove = checkMove(gameBoard, destination, selected)
-        
-        if (destination >= selected) {
-            moveCoin(gameBoard, destination, selected)
+        if (turns == 1){
+            println("$playerOneName, its your go!")
+        }
+        else if (turns == 2){
+            println("$playerTwoName, its your go!")
         }
         else{
+            var turns = 1
+        }
+        showGameBoard(gameBoard)
+        val selected = selectCoin(gameBoard) - 1
+        val destination = whereMoveCoin(gameBoard) - 1
+        if (destination >= selected && checkMove(gameBoard, destination, selected)){
+            moveCoin(gameBoard, destination, selected)
+            if (turns == 1){
+                turns = 2
+            }
+            else{
+                turns = 1
+            }
+        } else {
             println("Invalid move!")
         }
-}
+    }
 
 
 }
@@ -60,8 +77,6 @@ fun placeCoinsInGrid(gameBoard: MutableList<String>) {
         }
 
         gameBoard[coinPlacement] = SILVERCOIN
-
-
 
     }
 
@@ -156,9 +171,19 @@ fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
 fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int): MutableList<String> {
     gameBoard[destination!!] = gameBoard[selected]
     gameBoard[selected] = (EMPTY)
+
+
     return(gameBoard)
 }
 
-fun checkMove(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int): MutableList<String> {
-return (gameBoard)
+fun checkMove(gameBoard: MutableList<String> = mutableListOf(), destination: Int, selected: Int): Boolean {
+
+    for (i in selected..destination) {
+        if (gameBoard[i] != EMPTY) {
+            return false
+        }
+
+
+    }
+    return true
 }
