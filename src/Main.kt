@@ -24,7 +24,6 @@ var turns = 1
 
 fun main() {
     //make game grid using const
-    println(COINAMMOUNT)
     val gameBoard = mutableListOf<String>()
     for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
     //randomly put an ammount of coins on the play grid using a const for the num of silver coins
