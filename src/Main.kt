@@ -140,7 +140,7 @@ fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
         }
         else
             println("Box has no coin!")
-            return selectCoin(gameBoard)
+        return selectCoin(gameBoard)
     }
     else
         println("Enter a number!")
