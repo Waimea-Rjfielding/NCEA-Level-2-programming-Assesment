@@ -35,6 +35,7 @@ fun main() {
 
 
     //randomly put an ammount of coins on the play grid using a const for the num of silver coins
+    println("Instructions! To play Old Gold, the aim is to be the player whom removes the gold coin, you do this by moving the gold coin to the right and eventually getting it to square 20, when it is in square 20, then you input an 'X' when the ")
     placeCoinsInGrid(gameBoard)
     while (true){
         if (turns == 1){
@@ -61,8 +62,6 @@ fun main() {
             println("Invalid move!")
         }
     }
-
-
 }
 fun placeCoinsInGrid(gameBoard: MutableList<String>) {
     repeat(COINAMMOUNT) {
@@ -178,7 +177,7 @@ fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?
 
 fun checkMove(gameBoard: MutableList<String> = mutableListOf(), destination: Int, selected: Int): Boolean {
 
-    for (i in selected..destination) {
+    for (i in (selected + 1)..destination) {
         if (gameBoard[i] != EMPTY) {
             return false
         }
