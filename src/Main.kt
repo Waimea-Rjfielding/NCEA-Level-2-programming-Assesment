@@ -33,10 +33,12 @@ fun main() {
     val playerTwoName = readln()
     var turns = 1
 
-
     //randomly put an ammount of coins on the play grid using a const for the num of silver coins
-    println("Instructions! To play Old Gold, the aim is to be the player whom removes the gold coin, you do this by moving the gold coin to the right and eventually getting it to square 20, when it is in square 20, then you input an 'X' when the ")
     placeCoinsInGrid(gameBoard)
+    println("Instructions!")
+    println("To play Old Gold, the aim is to be the player whom removes the gold coin.")
+    println("You do this by moving the gold coin to the right and eventually getting it to square 20 and then removing it.")
+    println("When it is in square 20, you input an zero when the program prompts you with where you would like to move the coin")
     while (true){
         if (turns == 1){
             println("$playerOneName, its your go!")
