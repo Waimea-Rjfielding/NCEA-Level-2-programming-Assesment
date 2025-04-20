@@ -1,4 +1,6 @@
 import kotlin.random.Random
+import kotlin.system.exitProcess
+
 /**
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
@@ -21,20 +23,18 @@ const val GOLDCOIN = "GOLD"
 const val SILVERCOIN = "SILV"
 var turns = 1
 
-
 fun main() {
-    //make game grid using const
     val gameBoard = mutableListOf<String>()
     for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
-    //randomly put an ammount of coins on the play grid using a const for the num of silver coins
     placeCoinsInGrid(gameBoard)
-    println("Instructions!")
+    //tell user the game instructions
     println("To play Old Gold, the aim is to be the player whom removes the gold coin.")
-    println("You do this by moving the gold coin to the right and eventually getting it to square 20 and then removing it.")
-    println("When it is in square 20, you input an zero when the program prompts you with where you would like to move the coin")
-    print("Player 1 name:")
+    println("You do this by moving coins to the right and eventually removing them one at a time in a 'turn by turn' fashion")
+    println("When a coin is in square 20 and you want to remove it, simply type a '0' (zero). This will make more sense when you begin playing the game.")
+    println()
+    print("Player 1 name: ")
     val playerOneName = readln()
-    print("Player 2 name:")
+    print("Player 2 name: ")
     val playerTwoName = readln()
 
     while (true){
@@ -127,9 +127,13 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
 
 fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
     println()
-    print("Which box contains the coin you would like to move: ")
+    print("Please enter the location of selected coin : ")
     var selectedCoin = readln().toIntOrNull()
     if (selectedCoin != null) {
+        if (selectedCoin <= 0 || selectedCoin >= gameBoard.size) {
+            println("Invalid Choice!")
+            return selectCoin(gameBoard)
+        }
         if (gameBoard[selectedCoin-1] != EMPTY) {
             return (selectedCoin)
         }
@@ -144,7 +148,7 @@ fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
 
 fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf(), playerOneName: String, playerTwoName: String): Int {
     println()
-    print("Enter where you would like to move coin: ")
+    print("Please enter destination box (or the number 0): ")
     var moveTo = readln().toIntOrNull()
     if (moveTo == 0) {
         val box20 = gameBoard[19]
@@ -156,7 +160,7 @@ fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf(), playerOneNam
                 println("Congratulations $playerTwoName! You won!")
             }
             gameBoard[19] = EMPTY
-            kotlin.system.exitProcess(0)
+            exitProcess(0)
         }
         if (box20 == SILVERCOIN) {
             gameBoard[19] = EMPTY
