@@ -1,6 +1,5 @@
 import kotlin.random.Random
 import kotlin.system.exitProcess
-
 /**
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
@@ -22,12 +21,12 @@ val COINAMMOUNT = Random.nextInt(from = MINCOINS, until = MAXCOINS)
 const val GOLDCOIN = "GOLD"
 const val SILVERCOIN = "SILV"
 var turns = 1
-
+// main code and setup of game
 fun main() {
     val gameBoard = mutableListOf<String>()
     for (i in 1..GAMESQUARES) gameBoard.add(EMPTY)
     placeCoinsInGrid(gameBoard)
-    //tell user the game instructions
+//tell user the game instructions
     println("To play Old Gold, the aim is to be the player whom removes the gold coin.")
     println("You do this by moving coins to the right and eventually removing them one at a time in a 'turn by turn' fashion")
     println("When a coin is in square 20 and you want to remove it, simply type a '0' (zero). This will make more sense when you begin playing the game.")
@@ -36,7 +35,7 @@ fun main() {
     val playerOneName = readln()
     print("Player 2 name: ")
     val playerTwoName = readln()
-
+// Main code loop, only broken by the end function within
     while (true){
         if (turns == 1){
             println("$playerOneName, its your go!")
@@ -73,7 +72,7 @@ fun main() {
         }
     }
 }
-
+// function to place coins in the gameboard list randomly
 fun placeCoinsInGrid(gameBoard: MutableList<String>) {
     repeat(COINAMMOUNT) {
     var coinPlacement = Random.nextInt(0, GAMESQUARES - 1)
@@ -94,7 +93,7 @@ fun placeCoinsInGrid(gameBoard: MutableList<String>) {
     }
     gameBoard[coinPlacement] = GOLDCOIN
 }
-
+//function to display game grid horizontally starting with square 1
 fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
     println()
     for (i in 0..<gameBoard.size) {
@@ -111,7 +110,7 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
     println("+")
     for (i in gameBoard.indices) {
         print("| ")
-        when(gameBoard[i]) {
+        when(gameBoard[i]) { // puts colour into the game grid depending on the coin type
             SILVERCOIN -> print(gameBoard[i].black().bgGrey())
             GOLDCOIN -> print(gameBoard[i].black().bgYellow())
             EMPTY -> print(gameBoard[i].black())
@@ -124,11 +123,11 @@ fun showGameBoard(gameBoard: MutableList<String> = mutableListOf()) {
     }
     println("+")
 }
-
+// asks player which coin they would like to move which also checks to see if the box is empty, if the box is empty then re-select
 fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
     println()
     print("Please enter the location of selected coin : ")
-    var selectedCoin = readln().toIntOrNull()
+    val selectedCoin = readln().toIntOrNull()
     if (selectedCoin != null) {
         if (selectedCoin <= 0 || selectedCoin >= gameBoard.size) {
             println("Invalid Choice!")
@@ -145,11 +144,11 @@ fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
         println("Enter a number!")
         return selectCoin(gameBoard)
 }
-
+// asks player where they would like to move and also checks to see if the box is empty, if the box is not empty then re-select
 fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf(), playerOneName: String, playerTwoName: String): Int {
     println()
     print("Please enter destination box (or the number 0): ")
-    var moveTo = readln().toIntOrNull()
+    val moveTo = readln().toIntOrNull()
     if (moveTo == 0) {
         val box20 = gameBoard[19]
         if (box20 == GOLDCOIN) {
@@ -182,13 +181,13 @@ fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf(), playerOneNam
         return whereMoveCoin(gameBoard, playerOneName, playerTwoName)
     }
 }
-
+// moves coin after checks have been done to ensure a legal move
 fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?, selected: Int): MutableList<String> {
     gameBoard[destination!!] = gameBoard[selected]
     gameBoard[selected] = (EMPTY)
     return(gameBoard)
 }
-
+//checks to ensure legal move
 fun checkMove(gameBoard: MutableList<String> = mutableListOf(), destination: Int, selected: Int): Boolean {
     for (i in (selected + 1)..destination) {
         if (gameBoard[i] != EMPTY) {
