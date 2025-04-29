@@ -147,7 +147,7 @@ fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
 // asks player where they would like to move and also checks to see if the box is empty, if the box is not empty then re-select
 fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf(), playerOneName: String, playerTwoName: String): Int {
     println()
-    print("Please enter destination box (or the number 0): ")
+    print("Please enter destination box: ")
     val moveTo = readln().toIntOrNull()
     if (moveTo == 0) {
         val box20 = gameBoard[19]
@@ -191,6 +191,7 @@ fun moveCoin(gameBoard: MutableList<String> = mutableListOf(), destination: Int?
 fun checkMove(gameBoard: MutableList<String> = mutableListOf(), destination: Int, selected: Int): Boolean {
     for (i in (selected + 1)..destination) {
         if (gameBoard[i] != EMPTY) {
+            println("You can only move to and over empty spaces!")
             return false
         }
     }
