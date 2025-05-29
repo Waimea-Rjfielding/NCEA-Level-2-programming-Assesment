@@ -9,7 +9,7 @@ Tested moving a coin into box 20
 
 
 ### Test Result
-![box_20.png](<screenshots/box_20.png>)
+![box_20.png](<screenshots/Box_20.png>)
 
 Code functioned as expected succesfully moving a coin into box 20.
 
