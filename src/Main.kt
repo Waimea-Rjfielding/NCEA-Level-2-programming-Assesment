@@ -29,7 +29,7 @@ fun main() {
 //tell user the game instructions
     println("To play Old Gold, the aim is to be the player whom removes the gold coin.")
     println("You do this by moving coins to the right and eventually removing them one at a time in a 'turn by turn' fashion")
-    println("When a coin is in square 20 and you want to remove it, simply type a '0' (zero). This will make more sense when you begin playing the game.")
+    println("When a coin is in square 20 and you want to remove it, simply type a '0' (zero) after selecting box 20. This will make more sense when you begin playing the game.")
     println()
     print("Player 1 name: ")
     val playerOneName = readln()
@@ -129,21 +129,24 @@ fun selectCoin(gameBoard: MutableList<String> = mutableListOf()): Int {
     print("Please enter the location of selected coin : ")
     val selectedCoin = readln().toIntOrNull()
     if (selectedCoin != null) {
-        if (selectedCoin <= 0 || selectedCoin >= gameBoard.size) {
+        if (selectedCoin <= 0 || selectedCoin > gameBoard.size) {
             println("Invalid Choice!")
             return selectCoin(gameBoard)
         }
         if (gameBoard[selectedCoin-1] != EMPTY) {
             return (selectedCoin)
         }
-        else
+        else {
             println("Box has no coin!")
-        return selectCoin(gameBoard)
+            return selectCoin(gameBoard)
+        }
     }
-    else
+    else {
         println("Enter a number!")
         return selectCoin(gameBoard)
+    }
 }
+
 // asks player where they would like to move and also checks to see if the box is empty, if the box is not empty then re-select
 fun whereMoveCoin(gameBoard: MutableList<String> = mutableListOf(), playerOneName: String, playerTwoName: String): Int {
     println()

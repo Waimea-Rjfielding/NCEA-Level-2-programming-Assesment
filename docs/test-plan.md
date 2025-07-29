@@ -39,3 +39,9 @@ Statement detailing what should happen. Statement detailing what should happen. 
 ---
 
 
+Expecting:
+- Players get to take a turn
+- Player can make a move
+- Player can remove a coin
+- Player removing gold wins
+- 
